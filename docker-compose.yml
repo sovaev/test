@@ -1,0 +1,25 @@
+version: "2"
+services:
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/app
+
+  redis:
+    build:
+      context: ./redis
+      dockerfile: Dockerfile
+    volumes:
+      - ./data/redis:/data
+
+  nginx:
+    ports:
+      - "127.0.0.1:8081:80"
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+
+
